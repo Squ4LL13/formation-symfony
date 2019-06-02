@@ -70,7 +70,7 @@ class AdController extends AbstractController
      * Permet d'afficher le formulaire d'étidtion
      *
      * @Route("/ads/{slug}/edit", name = "ads_edit")
-     * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message="Cette annonce ne vous appartient pas vous ne pouvez pas la modifier !")
+     * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message="Cette annonce ne vous appartient pas, vous ne pouvez pas la modifier !")
      *
      * @return Response
      */
