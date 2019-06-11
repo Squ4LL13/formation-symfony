@@ -15,6 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class BookingType extends ApplicationType
 {
     private $transformer;
+
     public function __construct(FrenchToDateTimeTransformer $transformer)
     {
         $this->transformer = $transformer;
@@ -27,8 +28,7 @@ class BookingType extends ApplicationType
             ->add('endDate', TextType::class, $this->getConfiguration("Date de départ", "La date à laquelle vous quittez les lieux"))
             ->add('comment', TextareaType::class, $this->getConfiguration(false, "Si vous avez un commentaire, n'hésitez pas à en faire part !", [
                 "required" => false
-            ]))
-        ;
+            ]));
         $builder->get('startDate')->addModelTransformer($this->transformer);
         $builder->get('endDate')->addModelTransformer($this->transformer);
     }
@@ -37,6 +37,10 @@ class BookingType extends ApplicationType
     {
         $resolver->setDefaults([
             'data_class' => Booking::class,
+            'validation_groups' => [
+                "Default",
+                "front"
+            ]
         ]);
     }
 }
