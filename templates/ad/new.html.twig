@@ -71,3 +71,7 @@
 {% block _ad_images_entry_row %}
     {{ form_widget(form) }}
 {% endblock %}
+
+{%  block javascripts %}
+    {{ encore_entry_script_tags('ad') }}
+{% endblock %}
